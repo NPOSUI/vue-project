@@ -1,0 +1,46 @@
+#big {
+    position: absolute;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+#he {
+    background-color: lightskyblue;
+    height: 60px;
+    color: #333;
+    text-align: center;
+    position: fixed;
+    margin-top: auto;
+    margin-right: auto;
+    z-index: 3;
+}
+
+#ma {
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    margin-top: 65px;
+    line-height: 20px;
+}
+
+.h1 {
+    height: 60px;
+    margin-top: -5px;
+    border: 1px cadetblue solid;
+    border-top: none;
+    border-bottom: none;
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 100px;
+    line-height: 65px;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    font-size: larger;
+    font-weight: 600;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}

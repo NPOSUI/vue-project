@@ -1,0 +1,17 @@
+.el-header, .el-footer {
+    height: 30px;
+    background-color: lightskyblue;
+    color: #333;
+    text-align: center;
+    line-height: 20px;
+}
+
+.el-main {
+    background-color: #f9fafc;
+    color: #333;
+    text-align: center;
+    filter: alpha(Opacity=100);
+    -moz-opacity: 1;
+    opacity: 1;
+}
+
