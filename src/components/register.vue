@@ -68,7 +68,7 @@
                             </div>
                             <div class="bigLR">
                                 <div class="lr_lo">
-                                    <el-form label-width="80px" :model="formLogin" ref="formLogin" rules="loginRules" :hidden="isActive_lo">
+                                    <el-form label-width="80px" :model="formLogin" ref="formLogin" :rules="loginRules" :hidden="isActive_lo">
                                         <el-form-item label="名称" prop="name">
                                             <el-input v-model="formLogin.name"/>
                                         </el-form-item>
@@ -103,9 +103,9 @@
                                         <el-form-item label="地址" prop="address">
                                             <el-input v-model="formRegister.address"/>
                                         </el-form-item>
-                                        <el-form-item label="验证码">
-                                            <el-input v-model="formRegister.vc"/>
-                                        </el-form-item>
+<!--                                        <el-form-item label="验证码">-->
+<!--                                            <el-input v-model="formRegister.vc"/>-->
+<!--                                        </el-form-item>-->
                                         <el-form-item class="el-radio-button">
                                             <el-button type="primary" @click="vRegister('formRegister')" round>
                                                 注册
@@ -132,30 +132,35 @@
 
 <script>
     import pro_logo from '../assets/image/pro_logo.jpg';
-    import login from "./login";
     import * as axios from "axios";
     export default {
         data() {
             const validateName_lo = (rule, value, callback) => {
                 if (!value){
                     return callback(new Error('请输入用户名！'))
+                }else {
+                    return callback()
                 }
             };
             const validatePassword_lo = (rule, value, callback) => {
                 if (!value){
                     return callback(new Error('请输入密码！'))
+                }else {
+                    return callback()
                 }
             };
             const validateName = (rule, value, callback) => {
-                let reg = /^[.]{3,16}$/;
-                if (!reg.test(value)){
+                if (value.length<3 || value.length>20){
                     return callback(new Error('用户名太短或太长！'))
+                }else {
+                    return callback()
                 }
             };
             const validatePassword = (rule, value, callback) => {
-                let reg = /^[.]{6,16}$/;
-                if (!reg.test(value)){
+                if (value.length<6 || value.length>20){
                     return callback(new Error('密码太短或太长！'))
+                }else {
+                    return callback()
                 }
             };
             const validateRepassword = (rule, value, callback) => {
@@ -163,6 +168,8 @@
                     return callback(new Error('请再次输入密码！'))
                 }else if (value!==this.formRegister.password){
                     return callback(new Error('两次输入的密码不一致！'))
+                }else {
+                    return callback()
                 }
             };
             const validateEmail = (rule, value, callback) => {
@@ -171,6 +178,8 @@
                     return callback(new Error('请输入email！'))
                 }else if (!reg.test(value)){
                     return callback(new Error('无效的email！'))
+                }else {
+                    return callback()
                 }
             };
             const validateTel = (rule, value, callback) => {
@@ -179,12 +188,15 @@
                     return callback(new Error('请输入电话！'))
                 }else if (!reg.test(value)){
                     return callback(new Error('无效的电话号码！'))
+                }else {
+                    return callback()
                 }
             };
             const validateAddress = (rule, value, callback) => {
-                let reg = /^[.]{6,100}$/;
-                if (!reg.test(value)){
+                if (value.length<5 || value.length>50){
                     return callback(new Error('地址太短或者太长！'))
+                }else {
+                    return callback()
                 }
             };
 
@@ -213,9 +225,9 @@
                     name: 'zhangsan',
                     password: 'abc123456',
                     rpassword: 'abc123456',
-                    email: '',
-                    tel: '',
-                    address: '',
+                    email: '123@qq.com',
+                    tel: '12345678910',
+                    address: 'afasfdasf',
                 },
                 loginRules: {
                     name: [{required: true, validator: validateName_lo, trigger: 'blur'}],
@@ -228,7 +240,7 @@
                     email: [{required: true, validator: validateEmail, trigger: 'blur'}],
                     tel: [{required: true, validator: validateTel, trigger: 'blur'}],
                     address: [{required: true, validator: validateAddress, trigger: 'blur'}],
-                }
+                },
             }
         },
         methods: {
@@ -269,6 +281,7 @@
                 let data = JSON.stringify(this.formRegister);
                 console.log(data);
                 this.$refs[formRegister].validate((valid) => {
+                    console.log("他妈的搞事！！！");
                     if (valid) {
                         // let url = "http://localhost:8000/register/";
                         // let data = JSON.stringify(this.formRegister);
